@@ -23,16 +23,6 @@ on:
 
 jobs:
 
-  logs:
-    name: Print Logs
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Logs
-        run: |
-          echo inputs.github-event-action
-          echo ${{ inputs.github-event-action }}
-
   validate_pr:
     name: Check Pull Request
     if: ${{ inputs.github-event-action  == 'created' || inputs.github-event-action == 'opened' }}
