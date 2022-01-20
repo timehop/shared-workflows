@@ -25,4 +25,4 @@ jobs:
       - name: Sending message
         continue-on-error: true
         run: |
-          ruby shared-workflows/scripts/notify_on_slack.rb ${{ inputs.message}} ${{ secrets.SLACK_WEBHOOK_CHANNEL }}
+          ruby shared-workflows/scripts/notify_on_slack.rb "${{ inputs.message}}" ${{ secrets.SLACK_WEBHOOK_CHANNEL }}

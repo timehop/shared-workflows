@@ -30,7 +30,7 @@ jobs:
 
     steps:
       - name: Checking out the shared-workflows repo to access the scripts
-        uses: actions/checkout@V2
+        uses: actions/checkout@v2
         with:
           repository: timehop/shared-workflows
           path: shared-workflows
