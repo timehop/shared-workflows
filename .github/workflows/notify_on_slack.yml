@@ -1,0 +1,27 @@
+name: Notify on Slack
+
+on:
+   workflow_call:
+    inputs:
+      message:
+        required: true
+        type: string
+    secrets:
+      SLACK_WEBHOOK_CHANNEL:
+        required: true
+
+jobs:
+  notify_on_slack:
+    name: Send message on Slack
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checking out the shared_workflows repo to access the scripts
+        uses: actions/checkout@master
+        with:
+        repository: timehop/shared_workflows
+
+      - name: Sending message
+        continue-on-error: true
+        run: |
+          ruby scripts/notify_on_slack.rb ${{ inputs.message}} ${{ secrets.SLACK_WEBHOOK_CHANNEL }}

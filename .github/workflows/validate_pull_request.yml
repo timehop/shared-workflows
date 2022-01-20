@@ -29,10 +29,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout this public repo to access the scripts
+      - name: Checking out the shared_workflows repo to access the scripts
         uses: actions/checkout@master
         with:
-          repository: brugg/shared_workflows
+          repository: timehop/shared_workflows
 
       - name: Check if PR has a monday.com valid url
         run: |
