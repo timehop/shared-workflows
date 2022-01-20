@@ -16,13 +16,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checking out the shared_workflows repo to access the scripts
+      - name: Checking out the shared-workflows repo to access the scripts
         uses: actions/checkout@v2
         with:
-          repository: timehop/shared_workflows
-          path: shared_workflows
+          repository: timehop/shared-workflows
+          path: shared-workflows
 
       - name: Sending message
         continue-on-error: true
         run: |
-          ruby shared_workflows/scripts/notify_on_slack.rb ${{ inputs.message}} ${{ secrets.SLACK_WEBHOOK_CHANNEL }}
+          ruby shared-workflows/scripts/notify_on_slack.rb ${{ inputs.message}} ${{ secrets.SLACK_WEBHOOK_CHANNEL }}

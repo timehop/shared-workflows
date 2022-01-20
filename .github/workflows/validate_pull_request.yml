@@ -29,20 +29,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checking out the shared_workflows repo to access the scripts
+      - name: Checking out the shared-workflows repo to access the scripts
         uses: actions/checkout@V2
         with:
-          repository: timehop/shared_workflows
-          path: shared_workflows
+          repository: timehop/shared-workflows
+          path: shared-workflows
 
       - name: Check if PR has a monday.com valid url
         run: |
-          ruby shared_workflows/scripts/validate_pr_description.rb "${{ inputs.github-event-pull_request-body }}"
+          ruby shared-workflows/scripts/validate_pr_description.rb "${{ inputs.github-event-pull_request-body }}"
 
       - name: Notify PR was created on Slack
         run: |
-          ruby shared_workflows/scripts/notify_on_slack.rb "${{ inputs.github-event-pull_request-_links-html-href }} created by ${{ inputs.github-actor }}" ${{ secrets.SLACK_WEBHOOK_CHANNEL_ALERTS_PULL_REQUESTS }}
+          ruby shared-workflows/scripts/notify_on_slack.rb "${{ inputs.github-event-pull_request-_links-html-href }} created by ${{ inputs.github-actor }}" ${{ secrets.SLACK_WEBHOOK_CHANNEL_ALERTS_PULL_REQUESTS }}
 
       - name: Post update on monday pulse
         run: |
-          ruby shared_workflows/scripts/create_monday_update.rb "${{ inputs.github-event-pull_request-body }}" ${{ secrets.MONDAY_API_KEY }} "Pull request ${{ inputs.github-event-pull_request-_links-html-href }} created by ${{ inputs.github-actor }}"
+          ruby shared-workflows/scripts/create_monday_update.rb "${{ inputs.github-event-pull_request-body }}" ${{ secrets.MONDAY_API_KEY }} "Pull request ${{ inputs.github-event-pull_request-_links-html-href }} created by ${{ inputs.github-actor }}"
